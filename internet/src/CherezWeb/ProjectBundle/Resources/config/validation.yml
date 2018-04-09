@@ -1,0 +1,43 @@
+CherezWeb\ProjectBundle\Entity\Server:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            groups: [Default]
+            fields: [location]
+            errorPath: location
+            message: Значение поля должно быть уникальным.
+    properties:
+        location:
+            - NotBlank:
+                groups: [Default]
+                message: Не указано размещение сервера.
+            - Length:
+                groups: [Default]
+                max: 100
+                maxMessage: Длина поля не должна быть больше {{ limit }} символов.
+CherezWeb\ProjectBundle\Entity\Client:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            groups: [Default]
+            fields: [title]
+            errorPath: title
+            message: Значение поля должно быть уникальным.
+    properties:
+        title:
+            - NotBlank:
+                groups: [Default]
+                message: Не указано название видео-клиента.
+            - Length:
+                groups: [Default]
+                max: 100
+                maxMessage: Длина поля не должна быть больше {{ limit }} символов.
+CherezWeb\ProjectBundle\Entity\Channel:
+    properties:
+        path:
+            - Length:
+                groups: [Default]
+                max: 500
+                maxMessage: Длина поля не должна быть больше {{ limit }} символов.
+            - Regex:
+                groups: [Default]
+                pattern: '|^[^/]*[^/\s]+[^/]*(/[^/]*[^/\s]+[^/]*)*$|'
+                message: Неправильный формат поля "группа".

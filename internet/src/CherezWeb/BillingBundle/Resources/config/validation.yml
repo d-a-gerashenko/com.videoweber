@@ -1,0 +1,12 @@
+CherezWeb\BillingBundle\Entity\Payment:
+    properties:
+        sum:
+            - Range:
+                groups: [MakePaymentType]
+                max: 20000
+                maxMessage: Платеж должен быть не больше {{ limit }} р.
+                min: 10
+                minMessage: Платеж должен быть не меньше {{ limit }} р.
+            - NotBlank:
+                groups: [MakePaymentType]
+                message: Укажите сумму платежа в рублях.

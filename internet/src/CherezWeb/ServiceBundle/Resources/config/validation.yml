@@ -1,0 +1,25 @@
+CherezWeb\ServiceBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            groups: [Default]
+            fields: [email]
+            message: Этот адрес уже используется.
+    properties:
+        email:
+            - NotBlank:
+                groups: [Default, RecoverType, RegistrationType]
+                message: Не указан адрес электронной почты.
+            - Email:
+                groups: [Default, RecoverType, RegistrationType]
+                message: В адресе электронной почты допущена ошибка.
+        # Валидацию не зашифрованного пароля используем только в тех формах, где требуется ввод пароля.
+        password:
+            - NotBlank:
+                groups: [RegistrationType, ChangePasswordType, ChangeEmailType, RecoverPasswordType]
+                message: Пароль не должен быть пустым.
+            - Length:
+                groups: [RegistrationType, ChangePasswordType, ChangeEmailType, RecoverPasswordType]
+                min: 8
+                minMessage: Минимальная длина пароля {{ limit }} символов.
+                max: 50
+                maxMessage: Максимальная длина пароля {{ limit }} символов.

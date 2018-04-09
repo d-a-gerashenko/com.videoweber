@@ -1,0 +1,96 @@
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    {% if pagination.totalItemCount > 0 %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, '#', 't.id') }}
+                        {% if pagination.isSorted('t.id') %}
+                            {% if pagination.direction == 'asc' %}
+                                <span class="caret"></span>
+                            {% elseif pagination.direction == 'desc' %}
+                                <span class="dropup"><span class="caret"></span></span>
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Дата и время', 't.created') }}
+                        {% if pagination.isSorted('t.created') %}
+                            {% if pagination.direction == 'asc' %}
+                                <span class="caret"></span>
+                            {% elseif pagination.direction == 'desc' %}
+                                <span class="dropup"><span class="caret"></span></span>
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Сумма, р.', 't.sum') }}
+                        {% if pagination.isSorted('t.sum') %}
+                            {% if pagination.direction == 'asc' %}
+                                <span class="caret"></span>
+                            {% elseif pagination.direction == 'desc' %}
+                                <span class="dropup"><span class="caret"></span></span>
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Описание', 't.comment') }}
+                        {% if pagination.isSorted('t.comment') %}
+                            {% if pagination.direction == 'asc' %}
+                                <span class="caret"></span>
+                            {% elseif pagination.direction == 'desc' %}
+                                <span class="dropup"><span class="caret"></span></span>
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Остаток на счете, р.', 't.balanceAfter') }}
+                        {% if pagination.isSorted('t.balanceAfter') %}
+                            {% if pagination.direction == 'asc' %}
+                                <span class="caret"></span>
+                            {% elseif pagination.direction == 'desc' %}
+                                <span class="dropup"><span class="caret"></span></span>
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in pagination %}
+                    <tr>
+                        <td>{{ transaction.id }}</td>
+                        <td>{{ transaction.created | date("d.m.Y H:i") }}</td>
+                        <td>{{ (transaction.sum / 100) | number_format(2, ',', ' ') }}</td>
+                        <td>{{ transaction.comment }}</td>
+                        <td>{{ (transaction.balanceAfter / 100) | number_format(2, ',', ' ') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Список платежей пуст...</p>
+    {% endif %}    
+    {{ knp_pagination_render(pagination) }}
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var dialogParams = $.extend(true, getDefaultAjaxDialogParams(), {
+                title: 'История платежей',
+                width: 1000
+            });
+            
+            // Все ссылки теперь работают через ajax.
+            container.find('a').each(function () {
+                var $a = $(this);
+                $a.click(function (e) {
+                    e.preventDefault();
+                    $.chwAjax().makeRequest($a.attr('href'));
+                    container.dialog('close');
+                });
+            });
+            
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

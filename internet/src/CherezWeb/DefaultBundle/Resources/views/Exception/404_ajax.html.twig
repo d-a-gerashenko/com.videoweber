@@ -1,0 +1,13 @@
+{% extends 'CherezWebDefaultBundle:AjaxResponse:layout.html.twig' %}
+{% block content %}
+    <p>Запрашиваемые данные не существуют.</p>
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var dialogParams = $.extend(true, getDefaultAjaxDialogParams(), {
+                title: 'Данные отсутствуют'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

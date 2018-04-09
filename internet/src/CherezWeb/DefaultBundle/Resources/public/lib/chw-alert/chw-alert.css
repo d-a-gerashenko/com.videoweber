@@ -1,0 +1,24 @@
+.chw-alert-alerts{
+    z-index: 16777271;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #fff;
+    
+    border: 1px solid #ddd;
+    
+    box-shadow: 0 0 3px #ccc;
+    -moz-box-shadow: 0 0 3px #ccc;
+	-webkit-box-shadow: 0 0 3px #ccc;
+    
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.chw-alert-alerts__item {
+    width: 300px;
+    overflow-x: hidden;
+    
+    /*padding: 10px 10px 10px 35px;*/
+    margin: 5px;
+}

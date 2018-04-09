@@ -1,0 +1,38 @@
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% extends 'CherezWebProjectBundle::layout.html.twig' %}
+{% from 'MopaBootstrapBundle::macros.html.twig' import label, badge %}
+{% block headline %}Регистрация{% endblock headline %}
+{% block content_content %}
+    {{ form(form) }}
+    <br/>
+    <div class="well">
+        <a href="{{ path('cherez_web_service_security_login') }}" class="btn btn-default btn-block">Уже зарегистрированы? Авторизуйтесь.</a>
+    </div>
+{% endblock content_content %}
+{% block foot_script_assetic %}
+	{{ parent() }}
+    <script type="text/javascript">
+        $(function(){
+            var $registrationBtn = $('.registration-btn');
+            
+            var $termsOfServiceInput = $('<input type="checkbox" checked id="TermsOfService" data-toggle="popover" data-placement="top" data-content="Чтобы пользоваться сервисом {{ cherez_web__project__name }}, нужно принять условия использования сервиса." />');
+            $termsOfServiceInput.bootstrapPopover();
+            var $termsOfServiceContainer = $('<span style="padding-left:20px;"></span');
+            $termsOfServiceContainer.append($termsOfServiceInput);
+            $termsOfServiceContainer.append('<label style="padding-left:5px;" for="TermsOfService">Я принимаю <a href="' + Routing.generate('cherez_web_service_terms_of_service')  + '" target="_blank">Условия использования сервиса</a>.</label>');
+            $registrationBtn.after($termsOfServiceContainer);
+            
+            $registrationBtn.click(function () {
+                if (!$termsOfServiceInput.is(':checked')) {
+                    $termsOfServiceInput.bootstrapPopover('show');
+                    return false;
+                }
+                $registrationBtn.attr('data-loading-text', '<span class="glyphicon glyphicon-refresh"></span> Загрузка...');
+                $registrationBtn.bootstrapButton('loading');
+            });
+            
+            $registrationBtn.parents('form').css('display', 'block');
+        });
+    </script>
+{% endblock foot_script_assetic %}
+{% block counter_script %}{% endblock counter_script %}

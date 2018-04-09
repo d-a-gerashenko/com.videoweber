@@ -1,0 +1,15 @@
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    {{ form(form) }}
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var baseDialogParams = getDefaultAjaxDialogParams();
+            var dialogParams = $.extend(true, {}, baseDialogParams, {
+                title: 'Пополнение баланса'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

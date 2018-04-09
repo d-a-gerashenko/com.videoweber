@@ -1,0 +1,61 @@
+parameters:
+    cherez_web.project.key_manager.class: CherezWeb\ProjectBundle\Service\KeyManager
+    cherez_web.project.server_voter.class: CherezWeb\ProjectBundle\Security\Authorization\Voter\ServerVoter
+    cherez_web.project.clietn_voter.class: CherezWeb\ProjectBundle\Security\Authorization\Voter\ClietnVoter
+    cherez_web.project.channel_voter.class: CherezWeb\ProjectBundle\Security\Authorization\Voter\ChannelVoter
+    cherez_web.project.channel_access_manager.class: CherezWeb\ProjectBundle\Service\ChannelAccessManager
+    cherez_web.project.app_command_manager.class: CherezWeb\ProjectBundle\Service\AppCommandManager
+    cherez_web.project.channel_request_manager.class: CherezWeb\ProjectBundle\Service\ChannelRequestManager
+services:
+    cherez_web.project.key_manager:
+        class: %cherez_web.project.key_manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+    cherez_web.project.server_voter:
+        class: %cherez_web.project.server_voter.class%
+        public: false
+        tags: [{ name: security.voter }]
+    cherez_web.project.clietn_voter:
+        class: %cherez_web.project.clietn_voter.class%
+        public: false
+        tags: [{ name: security.voter }]
+    cherez_web.project.channel_voter:
+        class: %cherez_web.project.channel_voter.class%
+        public: false
+        tags: [{ name: security.voter }]
+    cherez_web.project.channel_access_manager:
+        class: %cherez_web.project.channel_access_manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+    cherez_web.project.app_command_manager:
+        class: %cherez_web.project.app_command_manager.class%
+        arguments: [@service_container]
+    cherez_web.project.channel_request_manager:
+        class: %cherez_web.project.channel_request_manager.class%
+        arguments: [@kernel, @service_container]
+    
+    cherez_web.project.app_command_processor.add_channel_response:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\AddChannelResponse
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.check_channel_request:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\CheckChannelRequest
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.check_client_state:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\CheckClientState
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.check_server_state:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\CheckServerState
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.create_channel_request:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\CreateChannelRequest
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.get_channel_requests:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\GetChannelRequests
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.update_client_state:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\UpdateClientState
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.update_server_state:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\UpdateServerState
+        tags: [{ name: cherez_web.project.app_command_processor}]
+    cherez_web.project.app_command_processor.get_online_channels:
+        class: CherezWeb\ProjectBundle\AppCommandProcessor\GetOnlineChannels
+        tags: [{ name: cherez_web.project.app_command_processor}]

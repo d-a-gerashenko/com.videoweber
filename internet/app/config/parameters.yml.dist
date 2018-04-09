@@ -1,0 +1,55 @@
+# This file is a "template" of what your parameters.yml file should look like
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     project
+    database_user:     project
+    database_password: 123
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    locale:            ru
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            fgh4w5herhhcrthrdfthzBHFDDDS$4edrf
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
+    images_cache_prefix: img_cache
+
+    cherez_web__project__url__protocol: "http"
+    cherez_web__project__url__host: "project.cherezweb.ru"
+    cherez_web__project__logo_path: "bundles/cherezwebdefault/chw_logo.png"
+    cherez_web__project__company__name: "ЧерезВеб"
+    cherez_web__project__company__start_year: "2011"
+    cherez_web__project__company__url__protocol: "http"
+    cherez_web__project__company__url__host: "www.cherezweb.ru"
+    cherez_web__project__name: "Проект ЧерезВеб"
+    cherez_web__project__title: "Проект ЧерезВеб - лучший проект"
+    cherez_web__project__counter__google_analytics: "UA-1111111111"
+
+    cherez_web__project__email__noreply__mail: "noreply@noreply.ru"
+
+    # Required for dev mode:
+    cherez_web__project__email__noreply__username: "noreply@noreply.ru"
+    cherez_web__project__email__noreply__password: "1111111111111111"
+    cherez_web__project__email__noreply__host: "ssl://smtp.noreply.ru:465"
+
+    cherez_web__project__email__dev__delivery_address: "admin@noreply.com"
+
+    cherez_web__project__email__support: "support@noreply.ru"
+
+    cherez_web__billing__secret: "111111111111"
+    cherez_web__billing__robokassa__merchan_login: ~
+    cherez_web__billing__robokassa__merchan_pass_1: ~
+    cherez_web__billing__robokassa__merchan_pass_2: ~
+
+    cherez_web__service__redirect__index_route: "cherez_web_project_index"
+    cherez_web__service__redirect__cp_index_route: "cherez_web_service_cp_account_settings"
+
+    registration_restriction: true
+    responses_total_size_limit: 314572800 #300MB
+    client_requests_limit: 40

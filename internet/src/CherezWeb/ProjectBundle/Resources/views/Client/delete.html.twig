@@ -1,0 +1,28 @@
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    <p>
+        Видео-клиент <b>#{{ client.id }}</b> будет удален, данные останутся на клиенте. Если видео-клиент будет снова подключен к интернет-серверу, данные на клиенте будут удалены.
+    </p>
+    <p>
+        Вы действительно хотите удалить видео-клиент <b>#{{ client.id }}</b>?
+    </p>
+    <hr/>
+    <button type="button" class="btn btn-primary">Отменить</button>
+    <button type="button" class="btn btn-danger item-delete-btn">Удалить видео-клиент #{{ client.id }}</button>
+    <script type="text/javascript">
+        $(function () {
+            var container = $('#{{ responseContainerId }}');
+            var dialogParams = $.extend(true, getDefaultAjaxDialogParams(), {
+                title: 'Удаление видео-клиента'
+            });
+            container.find('.item-delete-btn').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_delete', {client: "{{ client.id }}", confirmed: true}));
+            });
+            container.find('.btn-primary').click(function (e) {
+                container.dialog('close');
+            });
+            
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

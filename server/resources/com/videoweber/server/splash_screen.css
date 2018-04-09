@@ -1,0 +1,7 @@
+.progress-bar .bar {
+    -fx-accent: #FFF;
+}
+.progress-bar .track {
+    -fx-background-color: rgba(255, 255, 255, .0);
+    -fx-background-image: url("splash_screen.png");
+}

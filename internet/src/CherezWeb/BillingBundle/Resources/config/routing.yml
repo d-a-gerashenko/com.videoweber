@@ -1,0 +1,14 @@
+cherez_web_billing_payment_result:
+    pattern: /billing/result
+    defaults:
+        _controller: CherezWebBillingBundle:Payment:result
+
+cherez_web_billing_payment_success:
+    pattern: /billing/success
+    defaults:
+        _controller: CherezWebBillingBundle:Payment:success
+
+cherez_web_billing_payment_fail:
+    pattern: /billing/fail
+    defaults:
+        _controller: CherezWebBillingBundle:Payment:fail

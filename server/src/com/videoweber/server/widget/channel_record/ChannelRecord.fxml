@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.videoweber.server.widget.channel_record.ChannelRecordController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <StackPane alignment="TOP_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <StackPane fx:id="viewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="restartAfterLabel" text="Произошла ошибка, канал будет перезапущен через 15 сек." textFill="RED" />
+                  <Label fx:id="inactiveChannelLabel" layoutX="10.0" layoutY="10.0" text="Канал неактивен" textFill="RED" />
+               </children>
+            </StackPane>
+         </center>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <top>
+            <StackPane style="-fx-background-color: #555555; -fx-background-radius: 10px 10px 0 0;">
+               <children>
+                  <Label fx:id="titleLabel" text="Заголовок" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </StackPane>
+         </top>
+         <bottom>
+            <BorderPane style="-fx-border-color: #AAAAAA; -fx-border-width: 0 1px 1px 1px; -fx-border-radius: 0 0 10px 10px;" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <right>
+                  <HBox spacing="10.0">
+                     <children>
+                        <ToggleButton fx:id="muteButton" mnemonicParsing="false" onAction="#muteButtonAction" text="Звук" />
+                        <MenuButton mnemonicParsing="false" text="Управление">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#editChannelAction" text="Редактировать" />
+                              <MenuItem mnemonicParsing="false" onAction="#editEffectsAction" text="Эффекты" />
+                              <MenuItem mnemonicParsing="false" onAction="#editTriggersAction" text="Условия записи" />
+                            <MenuItem mnemonicParsing="false" onAction="#deleteChannelAction" text="Удалить" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </HBox>
+               </right>
+               <left>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button fx:id="startStopButton" mnemonicParsing="false" onAction="#startStopButtonAction" text="Старт" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#openArchiveAction" text="Архив" />
+                     </children>
+                  </HBox>
+               </left>
+               <center>
+                  <Circle fx:id="recCircle" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

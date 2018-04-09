@@ -1,0 +1,8 @@
+{% extends 'CherezWebServiceBundle:Email:layout.html.twig' %}
+
+{% block content %}
+<h4>Уведомление аминистратора "{{ cherez_web__project__name }}"</h4>
+<pre>
+    {{ message }}
+</pre>
+{% endblock content %}

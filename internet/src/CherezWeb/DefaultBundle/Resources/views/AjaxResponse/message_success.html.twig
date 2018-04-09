@@ -1,0 +1,8 @@
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    <script type="text/javascript">
+        $(function(){
+            $.chwAlert().show({{ message | json_encode | raw }}, $.chwAlert().TYPE_SUCCSESS);
+        });
+    </script>
+{% endblock content %}

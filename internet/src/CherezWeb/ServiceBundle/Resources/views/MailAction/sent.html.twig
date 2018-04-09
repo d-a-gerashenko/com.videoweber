@@ -1,0 +1,27 @@
+{% extends 'CherezWebProjectBundle::layout.html.twig' %}
+{% from 'MopaBootstrapBundle::macros.html.twig' import label, badge %}
+{% block content_content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1>
+                Ссылка
+                {% if mailAction.type == 'verify' %}
+                    завершения регистрации
+                {% elseif mailAction.type == 'recover' %}
+                    восстановления пароля
+                {% elseif mailAction.type == 'change_mail' %}
+                    изменения адреса электронной почты
+                {% endif %}
+                отправлена на адрес {{ label(mailAction.email, 'warning') }}
+            </h1>
+        </div>
+        <div class="panel-body">
+            <p>
+                Если ссылка не придет в течение {{ label('5 минут', 'danger') }}, проверьте, правильно ли вы написали свой адрес: {{ label(mailAction.email, 'warning') }}
+            </p>
+            <p>
+                Если вы допустили ошибку в написании адреса, {% if goBackUrl is defined %}<a href="{{ goBackUrl }}">вернитесь назад</a> и {% endif %}повторите попытку.
+            </p>
+        </div>
+    </div>
+{% endblock content_content %}

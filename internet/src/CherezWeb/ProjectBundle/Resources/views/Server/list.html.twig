@@ -1,0 +1,66 @@
+{% extends 'CherezWebServiceBundle:Cp:layout.html.twig' %}
+{% block content_content %}
+    <p><button type="button" class="btn btn-success item-create-btn">Добавить</button></p>
+    {% if not servers %}
+        Список пуст...
+    {% else %}
+        <table class="table table-bordered table-striped table-hover ftps-list">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Размещение</th>
+                    <th>Версия</th>
+                    <th>Каналы</th>
+                    <th>Последнее подключение</th>
+                    <th>Ключ доступа</th>
+                    <th>Управление</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for server in servers %}
+                    <tr item-id="{{ server.id }}">
+                        <td>{{ server.id }}</td>
+                        <td>{{ server.location }}</td>
+                        <td>{% if not server.version %}---{% else %}{{ server.version }}{% endif %}</td>
+                        <td>
+                            {% if server.channels | length == 0 %}
+                                ---
+                            {% else %}
+                                {% for channel in server.channels %}
+                                    <p>{{ channel.title }} ({{ channel.uid }})</p>
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                        <td>{% if not server.lastConnection %}---{% else %}{{ server.lastConnection | date("d.m.Y H:i") }}{% endif %}</td>
+                        <td><textarea>{{ server.key }}</textarea></td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-primary btn-block item-edit-btn">Редактировать</button>
+                            <button type="button" class="btn btn-xs btn-warning btn-block item-update-key-btn">Обновить ключ</button>
+                            <button type="button" class="btn btn-xs btn-danger btn-block item-delete-btn">Удалить</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            $('.item-create-btn').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_server_create'));
+            });
+            
+            $('.item-edit-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_server_edit', {server: itemId}));
+            });
+            $('.item-update-key-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_server_update_key', {server: itemId}));
+            });
+            $('.item-delete-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_server_delete', {server: itemId}));
+            });
+        });
+    </script>
+{% endblock content_content %}

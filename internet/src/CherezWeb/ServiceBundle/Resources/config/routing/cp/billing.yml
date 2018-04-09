@@ -1,0 +1,16 @@
+cherez_web_service_cp_billing_index:
+    pattern:  /
+    defaults: { _controller: CherezWebServiceBundle:Cp:billing }
+    options: { expose: true }
+
+cherez_web_service_cp_billing_transaction_list:
+    pattern:  /billing/transaction/list
+    defaults: { _controller: CherezWebServiceBundle:Billing:transactionList }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_service_cp_billing_payment_make:
+    pattern:  /billing/payment/make
+    defaults: { _controller: CherezWebServiceBundle:Billing:makePayment }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.videoweber.server.window.channel_edit.ChannelEditController">
+   <children>
+      <BorderPane layoutX="20.0" layoutY="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <FlowPane alignment="CENTER_RIGHT" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveAction" text="Сохранить" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </FlowPane>
+         </bottom>
+         <center>
+            <VBox spacing="10.0">
+               <children>
+                  <FlowPane hgap="10.0" vgap="10.0">
+                     <children>
+                        <Pane prefWidth="100.0">
+                           <children>
+                              <Label text="Описание" />
+                           </children>
+                        </Pane>
+                        <TextField fx:id="channelTitleTextField" prefHeight="25.0" prefWidth="600.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane hgap="10.0" vgap="10.0">
+                     <children>
+                        <Pane prefWidth="100.0">
+                           <children>
+                              <Label text="Источник видео-данных" />
+                           </children>
+                        </Pane>
+                        <ChoiceBox fx:id="videoSourceChoiceBox" prefWidth="600.0" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane hgap="10.0" layoutX="20.0" layoutY="82.0" vgap="10.0">
+                     <children>
+                        <Pane prefWidth="100.0">
+                           <children>
+                              <Label text="Источник аудио-данных" />
+                           </children>
+                        </Pane>
+                        <ChoiceBox fx:id="audioSourceChoiceBox" prefWidth="600.0" />
+                     </children>
+                  </FlowPane>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

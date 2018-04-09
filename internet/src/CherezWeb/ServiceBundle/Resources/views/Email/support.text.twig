@@ -1,0 +1,11 @@
+{% extends 'CherezWebServiceBundle:Email:layout.text.twig' %}
+
+{% block content %}
+
+Пользователь: {% if app.user %}{{ app.user.email }} ({{ app.user.id }}){% else %}---{% endif %}
+Имя: {{ name }}
+Почта: {{ email }}
+Сообщение
+---
+{{ message }}
+{% endblock content %}

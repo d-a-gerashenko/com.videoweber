@@ -1,0 +1,13 @@
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    <script type="text/javascript">
+        $(function(){
+            $.chwAjax().ajaxStart();
+            {% if redirectUrl is defined %}
+                window.location.replace({{ redirectUrl | json_encode | raw }});
+            {% else %}
+                window.location.reload();
+            {% endif %}
+        });
+    </script>
+{% endblock content %}

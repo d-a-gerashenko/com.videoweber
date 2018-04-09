@@ -1,0 +1,16 @@
+.gregwar-captcha{
+    margin-top: 5px;
+}
+.hyphenation {
+    white-space: normal;
+    
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}

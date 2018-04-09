@@ -1,0 +1,99 @@
+cherez_web_project_index:
+    pattern:  /
+    defaults: { _controller: CherezWebProjectBundle:Default:index }
+    options: { expose: true }
+
+cherez_web_project_server_list:
+    pattern:  /server/list
+    defaults: { _controller: CherezWebProjectBundle:Server:list }
+    options: { expose: true }
+
+cherez_web_project_server_create:
+    pattern:  /server/create
+    defaults: { _controller: CherezWebProjectBundle:Server:create }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+    
+cherez_web_project_server_edit:
+    pattern:  /server/edit/{server}
+    defaults: { _controller: CherezWebProjectBundle:Server:edit }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_server_update_key:
+    pattern:  /server/update-key/{server}
+    defaults: { _controller: CherezWebProjectBundle:Server:updateKey }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_server_delete:
+    pattern:  /server/delete/{server}
+    defaults: { _controller: CherezWebProjectBundle:Server:delete }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_client_list:
+    pattern:  /client/list
+    defaults: { _controller: CherezWebProjectBundle:Client:list }
+    options: { expose: true }
+
+cherez_web_project_client_create:
+    pattern:  /client/create
+    defaults: { _controller: CherezWebProjectBundle:Client:create }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+    
+cherez_web_project_client_edit:
+    pattern:  /client/edit/{client}
+    defaults: { _controller: CherezWebProjectBundle:Client:edit }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_client_update_key:
+    pattern:  /client/update-key/{client}
+    defaults: { _controller: CherezWebProjectBundle:Client:updateKey }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_client_delete:
+    pattern:  /client/delete/{client}
+    defaults: { _controller: CherezWebProjectBundle:Client:delete }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_client_add_access:
+    pattern: /client/add_access/for_{client}_to_{channel}
+    defaults: { _controller: CherezWebProjectBundle:Client:addAccess }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_client_remove_access:
+    pattern: /client/remove_access/for_{client}_to_{channel}
+    defaults: { _controller: CherezWebProjectBundle:Client:removeAccess }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_channel_list:
+    pattern:  /channel/list
+    defaults: { _controller: CherezWebProjectBundle:Channel:list }
+    options: { expose: true }
+
+cherez_web_project_channel_edit:
+    pattern:  /channel/edit/{channel}
+    defaults: { _controller: CherezWebProjectBundle:Channel:edit }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_channel_change_order:
+    pattern: /channel/change_order/for_{channel}_set_order_{order}
+    defaults: { _controller: CherezWebProjectBundle:Channel:changeOrder }
+    requirements:
+        order: "\d+"
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_project_app_api:
+    pattern: /app_api
+    requirements:
+        _method: post
+    defaults: { _controller: CherezWebProjectBundle:AppApi:apiRequest }

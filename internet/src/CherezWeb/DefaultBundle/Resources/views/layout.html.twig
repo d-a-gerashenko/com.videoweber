@@ -1,0 +1,139 @@
+{% extends 'MopaBootstrapBundle::base_less.html.twig' %}
+{% block title %}
+    {% if headTitle is defined %}
+        {{headTitle}} {% block headTitleSeparator %}|{% endblock headTitleSeparator %}
+    {% endif %}
+    {% block headTitleBase %}headTitleBase block{% endblock headTitleBase %}
+{% endblock title %}
+{% block head_style %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+        {% stylesheets filter='cssrewrite,uglifycss'
+            'bundles/cherezwebdefault/lib/jquery-ui/1.10.4/css/bootstrap/jquery-ui-1.10.0.custom.css'
+        %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+        <!--[if lt IE 9]>
+            {% stylesheets filter='cssrewrite,uglifycss'
+                'bundles/cherezwebdefault/lib/jquery-ui/1.10.4/css/bootstrap/jquery.ui.1.10.0.ie.css'
+            %}
+                <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+            {% endstylesheets %}
+        <![endif]-->
+{#        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cherezwebdefault/lib/prettyPhoto/3.1.5/css/prettyPhoto.css') }}"/>#}
+        {% stylesheets filter='cssrewrite,uglifycss'
+            'bundles/cherezwebdefault/lib/prettyPhoto/3.1.5/css/prettyPhoto.css'
+            'bundles/cherezwebdefault/lib/chw-alert/chw-alert.css'
+            'bundles/cherezwebdefault/lib/chw-ajax/chw-ajax.css'
+            'bundles/cherezwebdefault/lib/chw-scroll-top/chw-scroll-top.css'
+            'bundles/cherezwebdefault/common.css'
+        %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock stylesheets %}
+{% endblock head_style %}
+{% block head_script %}
+	{#{{ parent() }}#}
+	<script type="text/javascript" src="{{ asset('bundles/cherezwebdefault/lib/jquery/1.11.1/jquery-1.11.1.min.js') }}"></script>
+{% endblock head_script %}
+{% block foot_script %}
+    {#{{ parent() }}#}
+    {% block foot_script_assetic %}
+        {{ parent() }}
+        <script type="text/javascript">
+            {#
+                UI и BootStrap конфликтуют, инициализируют одни и теже компоненты,
+                потому преносим конфликтные BootStrap функции в другие переменные,
+                и далее работаем уже с ними.
+            #}
+            var bootstrapButton = $.fn.button.noConflict();
+            $.fn.bootstrapButton = bootstrapButton;
+            var bootstrapTooltip = $.fn.tooltip.noConflict();
+            $.fn.bootstrapTooltip = bootstrapTooltip;
+            var bootstrapPopover = $.fn.popover.noConflict();
+            $.fn.bootstrapPopover = bootstrapPopover;
+        </script>
+        <script type="text/javascript" src="{{ asset('bundles/cherezwebdefault/lib/jquery-ui/1.10.4/js/jquery-ui-1.10.4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/cherezwebdefault/lib/prettyPhoto/3.1.5/js/jquery.prettyPhoto.js') }}"></script>
+        <script type="text/javascript">
+            function getPrettyPhotoDefaultParams() {
+                return {
+                    animationSpeed: 'normal',
+                    showTitle: false,
+                    allowresize: false,
+                    social_tools: false
+                };
+            }
+            $(function(){
+                $.fn.prettyPhoto(getPrettyPhotoDefaultParams());
+            });
+        </script>
+        <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        {% javascripts filter='uglifyjs2'
+            'bundles/cherezwebdefault/lib/jquery-cookie/1.4.1/jquery.cookie.js'
+            'bundles/cherezwebdefault/lib/chw-alert/chw-alert.js'
+            'bundles/cherezwebdefault/lib/chw-ajax/chw-ajax.js'
+            'bundles/cherezwebdefault/lib/chw-scroll-top/chw-scroll-top.js'
+            'bundles/cherezwebdefault/common.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock foot_script_assetic %}
+    {% if app.session.flashbag.peekAll | length > 0 %}
+        <script type="text/javascript">
+            $(function(){
+                {% for flashMessage in app.session.flashbag.get('notice_success') %}
+                    $.chwAlert().show({{ flashMessage | json_encode | raw }}, $.chwAlert().TYPE_SUCCSESS);
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('notice_warning') %}
+                    $.chwAlert().show({{ flashMessage | json_encode | raw }}, $.chwAlert().TYPE_WARNING);
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('notice_danger') %}
+                    $.chwAlert().show({{ flashMessage | json_encode | raw }}, $.chwAlert().TYPE_DANGER);
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('notice_info') %}
+                    $.chwAlert().show({{ flashMessage | json_encode | raw }}, $.chwAlert().TYPE_INFO);
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('java_script') %}
+                    {{ flashMessage | raw }}
+                {% endfor %}
+            });
+        </script>
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').bootstrapTooltip();
+            $('[data-toggle="popover"]').bootstrapPopover();
+        });
+    </script>
+    {% block counter_script %}
+        <!-- Google Analitycs {-->
+            <script type="text/javascript">
+            var myDomainName = document.domain? document.domain : 'default.cherezweb.ru';
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{ cherez_web__project__counter__google_analytics }}']);
+            _gaq.push(['_setDomainName', myDomainName]);
+            _gaq.push(['_setAllowLinker', true]);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+            </script>
+        <!-- } Google Analitycs -->
+    {% endblock counter_script %}
+{% endblock foot_script %}
+{% block headline %}{% endblock headline %}
+{% block content_content %}{% endblock content_content %}
+{% block content_sidebar %}{% endblock content_sidebar %}
+{% block footer %}
+    <hr>
+    &copy; {{ cherez_web__project__company__start_year }}&ndash;{{ '' | date('Y') }} <a href="{{ cherez_web__project__company__url__protocol }}://{{ cherez_web__project__company__url__host }}" target="_blank">"{{ cherez_web__project__company__name }}"</a>
+    <br/>
+    <a href="mailto: {{ cherez_web__project__email__support }}">{{ cherez_web__project__email__support }}</a>
+    <br><br><br>
+{% endblock footer %}

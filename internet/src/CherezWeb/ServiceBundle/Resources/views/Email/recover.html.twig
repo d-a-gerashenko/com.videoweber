@@ -1,0 +1,12 @@
+{% extends 'CherezWebServiceBundle:Email:layout.html.twig' %}
+
+{% block content %}
+<h4>Ссылка изменения пароля на "{{ cherez_web__project__name }}"</h4>
+<p>
+    Для изменения пароля перейдите по ссылке:
+    <br/>
+    <a href="{{ url('cherez_web_service_action_link_execute', {'code': mailAction.code}) }}">
+        {{ url('cherez_web_service_action_link_execute', {'code': mailAction.code}) }}
+    </a>
+</p>
+{% endblock content %}

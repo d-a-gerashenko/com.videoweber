@@ -1,0 +1,9 @@
+parameters:
+    cherez_web__billing__secret: "%cherez_web__billing__secret%"
+    cherez_web__billing__robokassa__merchan_login: "%cherez_web__billing__robokassa__merchan_login%"
+    cherez_web__billing__robokassa__merchan_pass_1: "%cherez_web__billing__robokassa__merchan_pass_1%"
+    cherez_web__billing__robokassa__merchan_pass_2: "%cherez_web__billing__robokassa__merchan_pass_2%"
+services:
+    cherez_web.billing.billing:
+        class: CherezWeb\BillingBundle\Service\Billing
+        arguments: [@doctrine.orm.entity_manager]

@@ -1,0 +1,13 @@
+_cherez_web_service_cp_billing:
+    resource: "@CherezWebServiceBundle/Resources/config/routing/cp/billing.yml"
+    prefix:   /billing
+    
+cherez_web_service_cp_index:
+    pattern:  /
+    defaults: { _controller: CherezWebServiceBundle:Cp:index }
+    options: { expose: true }
+
+cherez_web_service_cp_account_settings:
+    pattern:  /account_settings
+    defaults: { _controller: CherezWebServiceBundle:Cp:accountSettings }
+    options: { expose: true }

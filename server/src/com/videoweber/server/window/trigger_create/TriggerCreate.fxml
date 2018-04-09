@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.videoweber.server.window.trigger_create.TriggerCreateController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <VBox layoutY="1.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <FlowPane hgap="10.0" layoutX="20.0" layoutY="10.0" vgap="10.0">
+                     <children>
+                        <Pane prefWidth="192.0">
+                           <children>
+                              <Label text="Записать до срабатывания, сек." />
+                           </children>
+                        </Pane>
+                        <Slider fx:id="timeBeforeTriggerSlider" blockIncrement="1.0" majorTickUnit="5.0" max="60.0" minorTickCount="2" prefWidth="400.0" showTickLabels="true" showTickMarks="true" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane hgap="10.0" vgap="10.0">
+                     <children>
+                        <Pane prefWidth="192.0">
+                           <children>
+                              <Label text="Записать после срабатывания, сек." />
+                           </children>
+                        </Pane>
+                        <Slider fx:id="timeAfterTriggerSlider" blockIncrement="1.0" majorTickUnit="5.0" max="60.0" minorTickCount="2" prefWidth="400.0" showTickLabels="true" showTickMarks="true" />
+                     </children>
+                  </FlowPane>
+                  <Separator prefWidth="200.0" />
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#testAction" text="Тестировать" />
+                        <Button mnemonicParsing="false" onAction="#saveAction" text="Добавить" />
+                     </children>
+                  </FlowPane>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </bottom>
+         <center>
+            <TabPane fx:id="triggerTabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                  <Tab text="Детектор движения">
+                    <content>
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FlowPane hgap="10.0" vgap="10.0">
+                                 <children>
+                                    <Pane prefWidth="192.0">
+                                       <children>
+                                          <Label text="Нижний порог срабатывания, %" />
+                                       </children>
+                                    </Pane>
+                                    <Slider fx:id="motionMinThresholdSlider" blockIncrement="1.0" majorTickUnit="10.0" prefWidth="400.0" showTickLabels="true" showTickMarks="true" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane hgap="10.0" layoutX="20.0" layoutY="20.0" vgap="10.0">
+                                 <children>
+                                    <Pane prefWidth="192.0">
+                                       <children>
+                                          <Label text="Верхний порог срабатывания, %" />
+                                       </children>
+                                    </Pane>
+                                    <Slider fx:id="motionMaxThresholdSlider" blockIncrement="1.0" majorTickUnit="10.0" prefWidth="400.0" showTickLabels="true" showTickMarks="true" />
+                                 </children>
+                              </FlowPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                    </content>
+                  </Tab>
+                  <Tab text="Детектор звука">
+                     <content>
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FlowPane hgap="10.0" vgap="10.0">
+                                 <children>
+                                    <Pane prefWidth="192.0">
+                                       <children>
+                                          <Label text="Порог срабатывания, %" />
+                                       </children>
+                                    </Pane>
+                                    <Slider fx:id="soundThresholdSlider" blockIncrement="1.0" majorTickUnit="10.0" prefWidth="400.0" showTickLabels="true" showTickMarks="true" />
+                                 </children>
+                              </FlowPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

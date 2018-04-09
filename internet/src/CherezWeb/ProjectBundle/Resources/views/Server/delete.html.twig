@@ -1,0 +1,28 @@
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    <p>
+        Видео-сервер <b>#{{ server.id }}</b> будет удален со всех клиентов вместе с загруженными данными.
+    </p>
+    <p>
+        Вы действительно хотите удалить видео-сервер <b>#{{ server.id }}</b>?
+    </p>
+    <hr/>
+    <button type="button" class="btn btn-primary">Отменить</button>
+    <button type="button" class="btn btn-danger item-delete-btn">Удалить видео-сервер #{{ server.id }}</button>
+    <script type="text/javascript">
+        $(function () {
+            var container = $('#{{ responseContainerId }}');
+            var dialogParams = $.extend(true, getDefaultAjaxDialogParams(), {
+                title: 'Удаление видео-сервера'
+            });
+            container.find('.item-delete-btn').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_server_delete', {server: "{{ server.id }}", confirmed: true}));
+            });
+            container.find('.btn-primary').click(function (e) {
+                container.dialog('close');
+            });
+            
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

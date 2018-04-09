@@ -1,0 +1,19 @@
+{% extends 'CherezWebServiceBundle:Cp:layout.html.twig' %}
+{% block content_content %}
+    <h2>{{ app.user.email }}</h2>
+    <button class="btn btn-default change-email">Изменить адрес</button>
+    <button class="btn btn-default change-password">Изменить пароль</button>
+{% endblock content_content %}
+{% block foot_script_assetic %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('.change-email').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_service_security_change_email'));
+            });
+            $('.change-password').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_service_security_change_password'));
+            });
+        });
+    </script>
+{% endblock foot_script_assetic %}

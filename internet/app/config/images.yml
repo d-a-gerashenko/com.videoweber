@@ -1,0 +1,22 @@
+parameters:
+    imagine.controller.class: Extensions\AvalancheImagineBundle\Controller\ImagineController
+    extensions.avalanche_imagine.publishimage_imagine_filter.class: Extensions\AvalancheImagineBundle\ImagineFilter\PublishImageFilterLoader
+services:
+    extensions.avalanche_imagine.publishimage_imagine_filter:
+        class: %extensions.avalanche_imagine.publishimage_imagine_filter.class%
+        arguments: [@imagine.imagick]
+        tags:
+            - { name: imagine.filter.loader, filter: PublishImage}
+avalanche_imagine:
+    driver: imagick
+    cache_prefix: %images_cache_prefix%
+    filters:
+        square_300_insert:
+            type:    thumbnail
+            options: { size: [300, 300], mode: insert, quality: 90 }
+        square_135_insert:
+            type:    thumbnail
+            options: { size: [135, 135], mode: insert, quality: 90 }
+        original:
+            type:    PublishImage
+            options: { quality: 90 }

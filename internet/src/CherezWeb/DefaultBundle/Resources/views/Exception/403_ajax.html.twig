@@ -1,0 +1,14 @@
+{% extends 'CherezWebDefaultBundle:AjaxResponse:layout.html.twig' %}
+{% block content %}
+    <p>У вас нет прав достапа к этим данным.</p>
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var baseDialogParams = getDefaultAjaxDialogParams();
+            var dialogParams = $.extend(true, {}, baseDialogParams, {
+                title: 'В доступе отказано'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

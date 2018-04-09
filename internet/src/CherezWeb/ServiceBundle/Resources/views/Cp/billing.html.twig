@@ -1,0 +1,19 @@
+{% extends 'CherezWebServiceBundle:Cp:layout.html.twig' %}
+{% block content_content %}
+    <h2>{{ (app.user.wallet.balance / 100) | number_format(2, ',', ' ') }}&nbsp;р.</h2>
+    <button class="btn btn-default payment-make">Пополнить баланс</button>
+    <button class="btn btn-default transaction-list">История операций</button>
+{% endblock content_content %}
+{% block foot_script_assetic %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('.payment-make').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_service_cp_billing_payment_make'));
+            });
+            $('.transaction-list').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_service_cp_billing_transaction_list'));
+            });
+        });
+    </script>
+{% endblock foot_script_assetic %}

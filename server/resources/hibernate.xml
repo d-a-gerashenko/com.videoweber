@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <mapping class="com.videoweber.server.entity.ChannelEntity"/>
+    <mapping class="com.videoweber.server.entity.EffectEntity"/>
+    <mapping class="com.videoweber.server.entity.EffectRotateEntity"/>
+    <mapping class="com.videoweber.server.entity.SampleEntity"/>
+    <mapping class="com.videoweber.server.entity.SourceEntity"/>
+    <mapping class="com.videoweber.server.entity.SourceRtspEntity"/>
+    <mapping class="com.videoweber.server.entity.StorageEntity"/>
+    <mapping class="com.videoweber.server.entity.TriggerEntity"/>
+    <mapping class="com.videoweber.server.entity.TriggerMotionEntity"/>
+    <mapping class="com.videoweber.server.entity.TriggerSoundEntity"/>
+  </session-factory>
+</hibernate-configuration>

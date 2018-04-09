@@ -1,0 +1,35 @@
+{% if responseContainerId is not defined %}
+    {% set responseContainerUid = random() %}
+    {% set responseContainerId = 'chw-ajax-response-list__item-' ~ responseContainerUid %}
+{% endif %}
+<div id="{{ responseContainerId }}" class="chw-ajax-response-list__item">
+    <script type="text/javascript">
+        $(function (){
+            // Если в ответе есть форма, делаем её аяксовской.
+            var container = $('#{{ responseContainerId }}');
+            container.find('form.chw-ajax-manager-form').submit(function(e) {
+                e.preventDefault();
+        
+                var form = $(this);
+
+                var formData = form.serialize();
+
+                var parentDialog = form.closest('.ui-dialog-content');
+                parentDialog.dialog('close');
+
+                $.chwAjax().makeRequest({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: formData
+                });
+            });
+        });
+    </script>
+    {% block content %}{% endblock content %}
+    <script type="text/javascript">
+        $(function (){
+            // Удаляем полученный ответ.
+           $.chwAjax().removeResponse('{{ responseContainerId }}');
+        });
+    </script>
+</div>

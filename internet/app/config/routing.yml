@@ -1,0 +1,19 @@
+_cherez_web_default:
+    resource: "@CherezWebDefaultBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_cherez_web_billing:
+    resource: "@CherezWebBillingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_cherez_web_service:
+    resource: "@CherezWebServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_cherez_web_project:
+    resource: "@CherezWebProjectBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_imagine:
+    resource: .
+    type:     imagine

@@ -1,0 +1,94 @@
+{% extends 'CherezWebServiceBundle:Cp:layout.html.twig' %}
+{% block content_content %}
+    <p><button type="button" class="btn btn-success item-create-btn">Добавить</button></p>
+    {% if not clients %}
+        Список пуст...
+    {% else %}
+        <table class="table table-bordered table-striped table-hover ftps-list">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Название</th>
+                    <th>Каналы</th>
+                    <th>Последнее подключение</th>
+                    <th>Ключ доступа</th>
+                    <th>Управление</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                    <tr item-id="{{ client.id }}">
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.title }}</td>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <select style="width: 200px;">
+                                            <option>---</option>
+                                            {% for channel in channels %}
+                                                {% if channel not in client.channels %}
+                                                    <option value="{{ channel.id }}">{{ channel.title }} ({{ channel.uid }})</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td> <button class="btn btn-xs btn-success access-add-btn glyphicon glyphicon-plus" type="button"></button></td>
+                                </tr>
+                                {% for channel in client.channels %}
+                                    <tr channel-id="{{ channel.id }}">
+                                        <td>{{ channel.title }} ({{ channel.uid }})</td>
+                                        <td> <span class="btn btn-xs btn-danger access-remove-btn glyphicon glyphicon-minus" type="button"></span></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>{% if not client.lastConnection %}---{% else %}{{ client.lastConnection | date("d.m.Y H:i") }}{% endif %}</td>
+                        <td><textarea>{{ client.key }}</textarea></td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-primary btn-block item-edit-btn">Редактировать</button>
+                            <button type="button" class="btn btn-xs btn-warning btn-block item-update-key-btn">Обновить ключ</button>
+                            <button type="button" class="btn btn-xs btn-danger btn-block item-delete-btn">Удалить</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            $('.item-create-btn').click(function (e) {
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_create'));
+            });
+            
+            $('.item-edit-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_edit', {client: itemId}));
+            });
+            $('.item-update-key-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_update_key', {client: itemId}));
+            });
+            $('.item-delete-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_delete', {client: itemId}));
+            });
+            
+            $('.access-add-btn').click(function (e) {
+                var clientId = $(this).parents('tr').parents('tr').attr('item-id');
+                var channelId = $(this).parents('tr').find('select').val();
+                if (channelId === '---') {
+                    return;
+                }
+                
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_add_access', {client: clientId, channel: channelId}));
+            });
+            
+            $('.access-remove-btn').click(function (e) {
+                var clientId = $(this).parents('tr').parents('tr').attr('item-id');
+                var channelId = $(this).parents('tr').attr('channel-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_client_remove_access', {client: clientId, channel: channelId}));
+            });
+        });
+    </script>
+{% endblock content_content %}

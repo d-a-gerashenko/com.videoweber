@@ -1,0 +1,14 @@
+{% extends 'CherezWebDefaultBundle:AjaxResponse:layout.html.twig' %}
+{% block content %}
+    <p>На странице призошла ошибка. Вы можете пожаловаться на эту ошибку в тех. поддержку по адресу: <a href="mailto: {{ cherez_web__project__email__support }}">{{ cherez_web__project__email__support }}</a>.</p>
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var baseDialogParams = getDefaultAjaxDialogParams();
+            var dialogParams = $.extend(true, {}, baseDialogParams, {
+                title: 'Ошибка'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

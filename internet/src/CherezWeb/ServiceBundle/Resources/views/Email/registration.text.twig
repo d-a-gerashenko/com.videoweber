@@ -1,0 +1,6 @@
+{% extends 'CherezWebServiceBundle:Email:layout.text.twig' %}
+
+{% block content %}
+Для завершения регистрации перейдите по ссылке:
+{{ url('cherez_web_service_action_link_execute', {'code': mailAction.code}) }}
+{% endblock content %}

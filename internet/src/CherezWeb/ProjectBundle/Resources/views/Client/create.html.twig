@@ -1,0 +1,14 @@
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% extends "CherezWebDefaultBundle:AjaxResponse:layout.html.twig" %}
+{% block content %}
+    {{ form(form) }}
+    <script type="text/javascript">
+        $(function () {
+            var container = $('#{{ responseContainerId }}');
+            var dialogParams = $.extend(true, getDefaultAjaxDialogParams(), {
+                title: 'Добавление видео-клиента'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

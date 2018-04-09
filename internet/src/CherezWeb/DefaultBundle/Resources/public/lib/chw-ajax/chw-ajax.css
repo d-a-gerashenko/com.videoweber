@@ -1,0 +1,21 @@
+.chw-ajax-response-list {
+    display: none;
+}
+
+.chw-ajax-modal {
+    display:    none;
+    position:   fixed;
+    z-index:    5000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .5 ) 
+                url('chw-ajax__pending.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.chw-ajax-modal.chw-ajax-modal_pending {
+    display: block;
+}

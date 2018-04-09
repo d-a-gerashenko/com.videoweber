@@ -1,0 +1,6 @@
+{% extends 'CherezWebProjectBundle:Cp:layout.html.twig' %}
+{% block sidebar_items %}
+    {{ parent() }}
+    <a href="{{ path('cherez_web_service_cp_account_settings') }}" class="list-group-item{% if app.request.get('_route') == 'cherez_web_service_cp_account_settings' %} active{% endif %}">Нактройки аккаунта</a>
+    <a href="{{ path('cherez_web_service_cp_billing_index') }}" class="list-group-item{% if app.request.get('_route') == 'cherez_web_service_cp_billing_index' %} active{% endif %}">Баланс</a>
+{% endblock sidebar_items %}

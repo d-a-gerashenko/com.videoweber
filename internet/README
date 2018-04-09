@@ -1,0 +1,22 @@
+com.videoweber.internet
+--------------------------------------------------------------------------------
+[1, ...] the code is completely rewritten
+
+[0, ...] significant changes
+
+0 - alpha, 1 - beta, 2 - release candidate, 3 - public release
+
+[0, ...] any changes
+     
+--------------------------------------------------------------------------------
+ver.: 1.0.0.3
+--------------------------------------------------------------------------------
+
+crontab:
+* * * * * php /var/www/com.videoweber.internet/app/console cherez_web:project:requests_cleanup
+* * * * * php /var/www/com.videoweber.internet/app/console cherez_web:project:response_cleanup
+
+/etc/php5/apache2/php.ini
+post_max_size = 20M
+upload_max_filesize = 20M
+max_file_uploads = 20

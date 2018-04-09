@@ -1,0 +1,55 @@
+{% extends 'CherezWebServiceBundle:Cp:layout.html.twig' %}
+{% block content_content %}
+    {% if not channels %}
+        Список пуст...
+    {% else %}
+        <table class="table table-bordered table-striped table-hover ftps-list channels">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Группа</th>
+                    <th>Название</th>
+                    <th>UID</th>
+                    <th>Управление</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for channel in channels %}
+                    <tr item-id="{{ channel.id }}">
+                        <td>{{ channel.id }}</td>
+                        <td>{{ channel.path }}</td>
+                        <td>{{ channel.title }}</td>
+                        <td><textarea>{{ channel.uid }}</textarea></td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-primary btn-block item-edit-btn">Редактировать</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <script type="text/javascript">
+        $(function () {
+            $('.item-edit-btn').click(function (e) {
+                var itemId = $(this).closest('tr').attr('item-id');
+                $.chwAjax().makeRequest(Routing.generate('cherez_web_project_channel_edit', {channel: itemId}));
+            });
+            
+            // Return a helper with preserved width of cells
+            var fixHelper = function(e, ui) {
+                ui.children().each(function() {
+                    $(this).width($(this).width());
+                });
+                return ui;
+            };
+            $('.channels tbody').sortable({
+                helper: fixHelper,
+                update: function( event, ui ) {
+                    var itemId = ui.item.attr('item-id');
+                    var order = ui.item.index();
+                    $.chwAjax().makeRequest(Routing.generate('cherez_web_project_channel_change_order', {channel: itemId, order: order}));
+                }
+            });
+        });
+    </script>
+{% endblock content_content %}

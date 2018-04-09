@@ -1,0 +1,12 @@
+{% extends 'CherezWebProjectBundle::layout.html.twig' %}
+{% set headTitle = 'Панель управления' %}
+{% block headline %}Панель управления{% endblock headline %}
+{% block content_sidebar %}
+    <div class="list-group">
+        {% block sidebar_items %}
+            <a href="{{ path('cherez_web_project_server_list') }}" class="list-group-item{% if app.request.get('_route') == 'cherez_web_project_server_list' %} active{% endif %}">Видео-серверы</a>
+            <a href="{{ path('cherez_web_project_channel_list') }}" class="list-group-item{% if app.request.get('_route') == 'cherez_web_project_channel_list' %} active{% endif %}">Видео-каналы</a>
+            <a href="{{ path('cherez_web_project_client_list') }}" class="list-group-item{% if app.request.get('_route') == 'cherez_web_project_client_list' %} active{% endif %}">Видео-клиенты</a>
+        {% endblock sidebar_items %}
+    </div>
+{% endblock content_sidebar %}

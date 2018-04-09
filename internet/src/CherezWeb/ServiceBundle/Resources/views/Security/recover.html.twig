@@ -1,0 +1,7 @@
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% extends 'CherezWebProjectBundle::layout.html.twig' %}
+{% block headline %}Восстановление пароля{% endblock headline %}
+{% block content_content %}
+    {{ form(form) }}
+{% endblock content_content %}
+{% block counter_script %}{% endblock counter_script %}

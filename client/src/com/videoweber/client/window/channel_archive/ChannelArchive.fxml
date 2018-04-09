@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.videoweber.client.window.channel_archive.ChannelArchiveController">
+   <children>
+      <BorderPane layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <VBox spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane>
+                     <center>
+                        <FlowPane hgap="20.0" vgap="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold;" text="Дата и время:" />
+                                    <Pane fx:id="dateTimeSelectorPane" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold;" text="Шкала:" />
+                                    <Pane fx:id="scaleSelectorPane" />
+                                    <Button mnemonicParsing="false" onAction="#resetViewportAction" text="Курсор в начало дорожки" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </FlowPane>
+                     </center>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <right>
+                        <ToggleButton fx:id="soundButton" mnemonicParsing="false" onAction="#soundButtonAction" text="Звук" BorderPane.alignment="CENTER" />
+                     </right>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </BorderPane>
+                  <AnchorPane fx:id="dateTimeSliderPane" />
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="startStopButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="1260.0" text="Воспроизвести" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </bottom>
+         <center>
+            <StackPane fx:id="viewPane" style="-fx-background-color: #000000;" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

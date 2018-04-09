@@ -1,0 +1,17 @@
+{% extends 'CherezWebDefaultBundle::default.html.twig' %}
+{% set headTitle = 'Платеж не выполнен' %}
+{% block headline %}Платеж не выполнен{% endblock headline %}
+{% block content_content %}
+    <p>
+        {{ message }}
+    </p>
+    {% if payment is defined %}
+        <p>
+            <a href="{{ payment.returnURL }}">Продолжить работу с сервисом.</a>
+        </p>
+    {% else %}
+        <p>
+            <a href="/">Перейти на главную страницу сервиса.</a>
+        </p>
+    {% endif %}
+{% endblock content_content %}

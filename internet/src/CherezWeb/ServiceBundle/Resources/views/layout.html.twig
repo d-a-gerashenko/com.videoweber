@@ -1,0 +1,43 @@
+{% extends 'CherezWebDefaultBundle::layout.html.twig' %}
+{% block headTitleBase %}
+    {{ cherez_web__project__title }}
+{% endblock headTitleBase %}
+{% block navbar %}
+    <header class="{% block navbar_class %}navbar navbar-inverse navbar-static-top{% endblock navbar_class %}" id="top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Навигация</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% block navbar_logo %}<a href="{{ cherez_web__project__url__protocol }}://{{ cherez_web__project__url__host }}"><img style="margin: 10px;" src="{{ asset(cherez_web__project__logo_path) }}" alt="{{ cherez_web__project__name }}"></a>{% endblock navbar_logo %}
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    {% block navbar_left %}
+                        {#
+                            <li><a href="{{ path(cherez_web__service__redirect__index_route) }}">Главная</a></li>
+                            <li><a href="{{ path(cherez_web__service__redirect__index_route) }}">Новости</a></li>
+                        #}
+                    {% endblock navbar_left %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% block navbar_right %}
+                        {% block navbar_right_items %}{% endblock navbar_right_items %}
+                        {% if app.user %}
+{#                          <li><p class="navbar-text">{{ app.user.email }}</p></li>#}
+{#                          <li><button onclick="document.location='{{ path(cherez_web__service__redirect__cp_index_route) }}';" class="btn btn-primary navbar-btn">Панель управления</button>&nbsp;</li>#}
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.location='{{ path(cherez_web__service__redirect__cp_index_route) }}';" class="btn btn-primary navbar-btn">{{ app.user.email }} ({{ (app.user.wallet.balance / 100) | number_format(2, ',', ' ') }}&nbsp;р.)</button></li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.location='{{ path('cherez_web_service_security_logout') }}';" class="btn btn-danger navbar-btn">Выход</button></li>
+                        {% else %}
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.location='{{ path('cherez_web_service_security_registartion') }}';" class="btn btn-warning navbar-btn">Регистрация</button></li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.location='{{ path('cherez_web_service_security_login') }}';" class="btn btn-success navbar-btn">Авторизация</button></li>
+                        {% endif %}
+                    {% endblock navbar_right %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+{% endblock navbar %}

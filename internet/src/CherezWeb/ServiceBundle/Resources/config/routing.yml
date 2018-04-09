@@ -1,0 +1,16 @@
+_cherez_web_service_security:
+    resource: "@CherezWebServiceBundle/Resources/config/routing/security.yml"
+    prefix:   /security
+
+_cherez_web_service_cp:
+    resource: "@CherezWebServiceBundle/Resources/config/routing/cp.yml"
+    prefix:   /cp
+    
+cherez_web_service_action_link_execute:
+    pattern: /link/{code}
+    defaults: { _controller: CherezWebServiceBundle:MailAction:execute }
+    
+cherez_web_service_terms_of_service:
+    pattern:  /terms_of_service
+    defaults: { _controller: CherezWebServiceBundle:Default:termsOfService }
+    options: { expose: true }

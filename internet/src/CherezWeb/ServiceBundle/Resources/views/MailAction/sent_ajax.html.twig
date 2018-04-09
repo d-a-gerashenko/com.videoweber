@@ -1,0 +1,31 @@
+{% extends 'CherezWebDefaultBundle:AjaxResponse:layout.html.twig' %}
+{% from 'MopaBootstrapBundle::macros.html.twig' import label, badge %}
+{% block content %}
+    <p>
+        Ссылка
+        {% if mailAction.type == 'verify' %}
+            завершения регистрации
+        {% elseif mailAction.type == 'recover' %}
+            восстановления пароля
+        {% elseif mailAction.type == 'change_mail' %}
+            изменения адреса электронной почты
+        {% endif %}
+        отправлена на адрес: {{ label(mailAction.email, 'warning') }}
+    </p>
+    <p>
+        Если ссылка не придет в течение {{ label('5 минут', 'danger') }}, проверьте, правильно ли вы написали свой адрес: {{ label(mailAction.email, 'warning') }}
+    </p>
+    <p>
+        Если вы допустили ошибку в написании адреса, повторите попытку.
+    </p>
+    <script type="text/javascript">
+        $(function(){
+            var container = $('#{{ responseContainerId }}');
+            var baseDialogParams = getDefaultAjaxDialogParams();
+            var dialogParams = $.extend(true, {}, baseDialogParams, {
+                title: 'Ссылка отправлена вам на почту'
+            });
+            container.dialog(dialogParams);
+        });
+    </script>
+{% endblock content %}

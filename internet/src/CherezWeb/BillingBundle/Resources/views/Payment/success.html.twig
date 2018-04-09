@@ -1,0 +1,11 @@
+{% extends 'CherezWebDefaultBundle::default.html.twig' %}
+{% set headTitle = 'Платеж выполнен' %}
+{% block headline %}Платеж выполнен{% endblock headline %}
+{% block content_content %}
+    <p>
+        Платеж #{{ payment.id }} успешно выполнен. Сумма платежа: {{ (payment.transaction.sum / 100) | number_format(0, ',', ' ') }}&nbsp;р.
+    </p>
+    <p>
+        <a href="{{ payment.returnURL }}">Продолжить работу с сервисом.</a>
+    </p>
+{% endblock content_content %}

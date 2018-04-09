@@ -1,0 +1,39 @@
+cherez_web_service_security_login:
+    pattern: /login
+    defaults: { _controller: CherezWebServiceBundle:Security:login }
+
+cherez_web_service_security_login_check:
+    pattern: /login_check
+    requirements: { _method: post }
+    #    defaults: {} #закрываем этот роут
+
+cherez_web_service_security_login_final:
+    pattern: /login_final
+    defaults: { _controller: CherezWebServiceBundle:Security:loginFinal }
+
+cherez_web_service_security_logout:
+    pattern: /logout
+
+cherez_web_service_security_logout_final:
+    pattern: /logout_final
+    defaults: { _controller: CherezWebServiceBundle:Security:logoutFinal }
+    
+cherez_web_service_security_registartion:
+    pattern: /registration
+    defaults: { _controller: CherezWebServiceBundle:Security:registration }
+
+cherez_web_service_security_recover:
+    pattern: /recover
+    defaults: { _controller: CherezWebServiceBundle:Security:recover }
+
+cherez_web_service_security_change_email:
+    pattern: /change_email
+    defaults: { _controller: CherezWebServiceBundle:Security:changeEmail }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+cherez_web_service_security_change_password:
+    pattern: /change_password
+    defaults: { _controller: CherezWebServiceBundle:Security:changePassword }
+    options: { expose: true }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"

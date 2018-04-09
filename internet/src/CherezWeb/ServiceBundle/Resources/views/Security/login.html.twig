@@ -1,0 +1,12 @@
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% extends 'CherezWebProjectBundle::layout.html.twig' %}
+{% block headline %}Авторизация{% endblock headline %}
+{% block content_content %}
+    {{ form(form) }}
+    <br/>
+    <div class="well">
+        <a href="{{ path('cherez_web_service_security_recover') }}" class="btn btn-default btn-block"><strong>Забыли пароль?</strong> Воспользуйтесь восстановлением пароля.</a>
+        <a href="{{ path('cherez_web_service_security_registartion') }}" class="btn btn-default btn-block"><strong>Не зарегистрированы?</strong> Пройдите регистрацию.</a>
+    </div>
+{% endblock content_content %}
+{% block counter_script %}{% endblock counter_script %}
